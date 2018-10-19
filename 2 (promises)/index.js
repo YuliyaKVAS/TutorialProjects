@@ -15,6 +15,8 @@ done
         console.log('everytime')
     });*/
 
+    /*--------------------------------------------*/ 
+
 /*let promise = new Promise((resolve, reject) => {
 
     setTimeout(() => {
@@ -29,11 +31,15 @@ promise
         },
         error => {
             alert('rejected ' + error);
+            
         }
     );*/
 
-/*promise with error*/
 
+/*------------------------------------------------*/
+
+/*promise with error*/
+/*
 let promise = new Promise((resolve, reject) => {
 
     setTimeout(() => {
@@ -50,4 +56,39 @@ promise
                 alert('rejected: ' + error.message);
             }
         );
-        
+        */
+
+/*--------------------------*/
+
+
+/*function delay(ms){
+    return new Promise((resolve, reject) => {
+        setTimeout(resolve, ms);
+    });
+};
+
+delay(2000);*/
+
+/*-----------------------------------*/
+//begin of chain
+let chain = Promise.resolve();
+let urls = [
+    'user.json',
+    'guest.json'
+  ];
+let results = [];
+
+urls.forEach(function(url){
+    chain = chain
+        .then(() => httpGet(url))
+        .then((result) => {
+            results.push(result);
+        });
+});
+
+chain.then(() => {
+    alert(results);
+});
+
+
+
